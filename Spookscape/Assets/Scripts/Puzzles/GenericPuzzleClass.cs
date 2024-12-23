@@ -8,13 +8,17 @@ public class GenericPuzzleClass : MonoBehaviour
 
     public void OnPuzzleStarted()
     {
-        puzzleBaseObject.SetActive(true);
-        Debug.Log("Puzzle Started");
+        StartCoroutine(IEDelay(true));
     }
 
     public virtual void OnPuzzleClosed()
     {
-        puzzleBaseObject.SetActive(false);
-        Debug.Log("Puzzle Closed");
+        StartCoroutine(IEDelay(false));
+    }
+
+    private IEnumerator IEDelay(bool active)
+    {
+        yield return new WaitForSeconds(1); 
+        puzzleBaseObject.SetActive(active);
     }
 }
